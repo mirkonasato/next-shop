@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import Title from '../components/Title';
 import { getProducts } from '../lib/products';
 
@@ -23,7 +24,9 @@ function HomePage({ products }) {
         <ul>
           {products.map((product) => (
             <li key={product.id}>
-              {product.title}
+              <Link href={`/products/${product.id}`}>
+                {product.title}
+              </Link>
             </li>
           ))}
         </ul>
