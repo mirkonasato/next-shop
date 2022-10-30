@@ -1,3 +1,4 @@
+// Option 2: fetch products on the client side (in useEffect)
 import Head from 'next/head';
 import Title from '../components/Title';
 
