@@ -28,7 +28,7 @@ export const getStaticProps: GetStaticProps<ProductPageProps, ProductPageParams>
     const product = await getProduct(id);
     return {
       props: { product },
-      revalidate: 30, // seconds
+      revalidate: parseInt(process.env.REVALIDATE_SECONDS),
     };
   } catch (err) {
     if (err instanceof ApiError && err.status === 404) {
