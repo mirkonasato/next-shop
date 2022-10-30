@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { FormEventHandler, useState } from 'react';
 import Button from '../components/Button';
 import Field from '../components/Field';
@@ -6,6 +7,7 @@ import Page from '../components/Page';
 import { fetchJson } from '../lib/api';
 
 const SignInPage: React.FC = () => {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [status, setStatus] = useState({ loading: false, error: false });
@@ -21,6 +23,7 @@ const SignInPage: React.FC = () => {
       });
       setStatus({ loading: false, error: false });
       console.log('sign in:', response);
+      router.push('/');
     } catch (err) {
       setStatus({ loading: false, error: true });
     }
