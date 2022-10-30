@@ -23,11 +23,15 @@ export const getStaticPaths: GetStaticPaths<ProductPageParams> = async () => {
 };
 
 export const getStaticProps: GetStaticProps<ProductPageProps, ProductPageParams> = async ({ params: { id } }) => {
-  const product = await getProduct(id);
-  return {
-    props: { product },
-    revalidate: 30, // seconds
-  };
+  try {
+    const product = await getProduct(id);
+    return {
+      props: { product },
+      revalidate: 30, // seconds
+    };
+  } catch (err) {
+    return { notFound: true };
+  }
 };
 
 const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
