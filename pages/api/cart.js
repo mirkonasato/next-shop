@@ -1,4 +1,4 @@
-import { fetchJson } from '../../lib/api';
+import { fetchJson } from "../../lib/api";
 
 const { CMS_URL } = process.env;
 
@@ -22,8 +22,9 @@ async function handleGetCart(req, res) {
   }
   try {
     const cartItems = await fetchJson(`${CMS_URL}/cart-items`, {
-      headers: { 'Authorization': `Bearer ${jwt}` },
+      headers: { Authorization: `Bearer ${jwt}` },
     });
+    cnosole.log(cartItems);
     res.status(200).json(cartItems.map(stripCartItem));
   } catch (err) {
     res.status(401).end();
@@ -39,10 +40,10 @@ async function handlePostCart(req, res) {
   const { productId, quantity } = req.body;
   try {
     await fetchJson(`${CMS_URL}/cart-items`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Authorization': `Bearer ${jwt}`,
-        'Content-Type': 'application/json',
+        Authorization: `Bearer ${jwt}`,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ product: productId, quantity }),
     });
@@ -54,9 +55,9 @@ async function handlePostCart(req, res) {
 
 async function handleCart(req, res) {
   switch (req.method) {
-    case 'GET':
+    case "GET":
       return handleGetCart(req, res);
-    case 'POST':
+    case "POST":
       return handlePostCart(req, res);
     default:
       res.status(405).end();
