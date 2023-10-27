@@ -18,6 +18,11 @@ function NavBar() {
         {user ? (
           <>
             <li>
+              <Link href="/cart">
+                Cart
+              </Link>
+            </li>
+            <li>
               {user.name}
             </li>
             <li>
