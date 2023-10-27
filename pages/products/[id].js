@@ -1,5 +1,7 @@
 import Image from 'next/image';
+import AddToCartWidget from '../../components/AddToCartWidget';
 import Page from '../../components/Page';
+import { useUser } from '../../hooks/user';
 import { ApiError } from '../../lib/api';
 import { getProduct, getProducts } from '../../lib/products';
 
@@ -29,6 +31,8 @@ export async function getStaticProps({ params: { id } }) {
 }
 
 function ProductPage({ product }) {
+  const user = useUser();
+
   console.log('[ProductPage] render:', product);
   return (
     <Page title={product.title}>
@@ -45,6 +49,7 @@ function ProductPage({ product }) {
           <p className="text-lg font-bold mt-2">
             {product.price}
           </p>
+          {user && <AddToCartWidget productId={product.id} />}
         </div>
       </div>
     </Page>
