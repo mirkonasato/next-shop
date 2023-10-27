@@ -1,23 +1,23 @@
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import { fetchJson } from '../lib/api';
 
 function NavBar() {
-  const [user, setUser] = useState();
-  useEffect(() => {
-    (async () => {
-      try {
-        const user = await fetchJson('/api/user');
-        setUser(user);
-      } catch (err) {
-        // not signed in
-      }
-    })();
-  }, []);
+  const query = useQuery('user', async () => {
+    try {
+      return await fetchJson('/api/user');
+    } catch (err) {
+      return undefined;
+    }
+  }, {
+    cacheTime: Infinity,
+    staleTime: 30_000, // ms
+  });
+  const user = query.data;
 
   const handleSignOut = async () => {
     await fetchJson('/api/logout');
-    setUser(undefined);
+    //FIXME setUser(undefined);
   };
 
   console.log('[NavBar] user:', user);
