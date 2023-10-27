@@ -11,10 +11,10 @@
   "dependencies": {
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.0"
+    "next": "^14.0.0"
   },
   "devDependencies": {
     "eslint": "^8",
-    "eslint-config-next": "14.0.0"
+    "eslint-config-next": "^14.0.0"
   }
 }
