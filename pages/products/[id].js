@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Title from '../../components/Title';
+import { ApiError } from '../../lib/api';
 import { getProduct, getProducts } from '../../lib/products';
 
 export async function getStaticPaths() {
@@ -20,7 +21,10 @@ export async function getStaticProps({ params: { id } }) {
       revalidate: 30, // seconds
     };
   } catch (err) {
-    return { notFound: true };
+    if (err instanceof ApiError && err.status === 404) {
+      return { notFound: true };
+    }
+    throw err;
   }
 }
 
