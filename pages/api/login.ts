@@ -1,13 +1,9 @@
 import cookie from 'cookie';
 import { NextApiHandler } from 'next';
 import { fetchJson } from '../../lib/api';
+import { User } from '../../lib/user';
 
 const { CMS_URL } = process.env;
-
-interface User {
-  id: number;
-  name: string;
-}
 
 const handleLogin: NextApiHandler<User> = async (req, res) => {
   if (req.method !== 'POST') {
