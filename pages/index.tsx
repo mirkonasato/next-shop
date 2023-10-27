@@ -13,7 +13,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   const products = await getProducts();
   return {
     props: { products },
-    revalidate: 30, // seconds
+    revalidate: parseInt(process.env.REVALIDATE_SECONDS),
   };
 };
 
