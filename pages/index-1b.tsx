@@ -1,4 +1,5 @@
-// Option 1: fetch products on the server side (in getStaticProps)
+// Option 1b: fetch products on the server side (in getStaticProps)
+// but with Incremental Static Regeneration (in getStaticProps)
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Title from '../components/Title';
@@ -11,7 +12,10 @@ interface HomePageProps {
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   console.log('[HomePage] getStaticProps()');
   const products = await getProducts();
-  return { props: { products } };
+  return {
+    props: { products },
+    revalidate: 30, // seconds
+  };
 };
 
 const HomePage: React.FC<HomePageProps> = ({ products }) => {
