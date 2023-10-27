@@ -18,6 +18,11 @@ const NavBar: React.FC = () => {
         {user ? (
           <>
             <li>
+              <Link href="/cart">
+                Cart
+              </Link>
+            </li>
+            <li>
               {user.name}
             </li>
             <li>
