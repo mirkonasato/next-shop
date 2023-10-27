@@ -16,7 +16,10 @@
   "devDependencies": {
     "@types/node": "^20.8.9",
     "@types/react": "^18.2.33",
+    "autoprefixer": "^10.4.16",
     "eslint": "^8",
-    "eslint-config-next": "^14.0.0"
+    "eslint-config-next": "^14.0.0",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5"
   }
 }
