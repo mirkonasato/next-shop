@@ -1,4 +1,5 @@
-// Option 1: fetch products on the server side (in getStaticProps)
+// Option 1b: fetch products on the server side
+// but with Incremental Static Regeneration (in getStaticProps)
 import Head from 'next/head';
 import Title from '../components/Title';
 import { getProducts } from '../lib/products';
@@ -6,7 +7,10 @@ import { getProducts } from '../lib/products';
 export async function getStaticProps() {
   console.log('[HomePage] getStaticProps()');
   const products = await getProducts();
-  return { props: { products } };
+  return {
+    props: { products },
+    revalidate: 30, // seconds
+  };
 }
 
 function HomePage({ products }) {
