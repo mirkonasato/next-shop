@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 function ProductCard({ product }) {
   return (
-    <div className="border my-4 w-80 shadow hover:shadow-xl">
+    <div className="border w-80 shadow hover:shadow-xl">
       <Link href={`/products/${product.id}`}>
         <img src="https://dummyimage.com/320x240" alt="" />
         <div className="p-2 flex justify-between items-baseline">
