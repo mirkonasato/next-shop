@@ -1,3 +1,4 @@
+// Option 1: fetch products on the server side (in getStaticProps)
 import Head from 'next/head';
 import Title from '../components/Title';
 
